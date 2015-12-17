@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" backgroundcolor="#808080" nextobjectid="1">
+ <tileset firstgid="1" name="terrain1-8" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="terrain1-8.png" width="256" height="256"/>
+ </tileset>
+ <layer name="background" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztziERAAAIBLA3RKB/VRogOcTE/CpJAQAAJ/rBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2A13x8Nh
+  </data>
+ </layer>
+ <layer name="foreground" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2FFugkAUQNGJMcb+sggX4A760YV2g+0WKqk2pHFgBAaeck7yoh8EyVwJjvv06yMt6zTDvJr3tS8g5dd3q02i2vJ9Epke/c4Lf97W7pFm7Qt4Esfr1NYkTbqOA1Ny/BRNitvk0d+/Q2v5DNMUzq4z5+tr7tgp3jrvl96PlK7ZXOcp7ZFS/7rmnulz9lhjfzhXj9y5Soz5bvf9xprSI8J+fY4WufOUqNFjbJMIPVpTW0wxd4/bOXf/Zmi9praosQdZukVrzHO4ZE94r0fNeRW1eoyhx7gWt6lBj8fU7tHaYoex2g6HtMz/ihoMO3SmNmvf73BnatKjnx5x3GtRu4keeXrEokcsesSydA97jX5r9CBPj1j0iEWPWPSIRY9Y9FjGV+H09fiuMHroEcEp8GyRNX9O1hIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZrv/YF8OfzMj9gSHbg
+  </data>
+ </layer>
+</map>
