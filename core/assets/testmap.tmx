@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" backgroundcolor="#808080" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" backgroundcolor="#808080" nextobjectid="69">
  <tileset firstgid="1" name="terrain1-8" tilewidth="16" tileheight="16" tilecount="256">
   <image source="terrain1-8.png" width="256" height="256"/>
+  <tile id="1">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
+  <tile id="49">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
@@ -10,7 +30,15 @@
  </layer>
  <layer name="foreground" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2FFugkAUQNGJMcb+sggX4A760YV2g+0WKqk2pHFgBAaeck7yoh8EyVwJjvv06yMt6zTDvJr3tS8g5dd3q02i2vJ9Epke/c4Lf97W7pFm7Qt4Esfr1NYkTbqOA1Ny/BRNitvk0d+/Q2v5DNMUzq4z5+tr7tgp3jrvl96PlK7ZXOcp7ZFS/7rmnulz9lhjfzhXj9y5Soz5bvf9xprSI8J+fY4WufOUqNFjbJMIPVpTW0wxd4/bOXf/Zmi9praosQdZukVrzHO4ZE94r0fNeRW1eoyhx7gWt6lBj8fU7tHaYoex2g6HtMz/ihoMO3SmNmvf73BnatKjnx5x3GtRu4keeXrEokcsesSydA97jX5r9CBPj1j0iEWPWPSIRY9Y9FjGV+H09fiuMHroEcEp8GyRNX9O1hIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZrv/YF8OfzMj9gSHbg
+   eJzt2FFugkAUQNGJaYz9ZREuwB30owvtBtsttKTamEaGEZjhKeckL/pBkMyV4PiSfr2nto4LzLN5W/sC0vD6brVJVFu+TyLTI+/U+PO2do90a1/Agzicp7YuaXLtMDIlx8/RpbhN7v39O7aWjzDdHbM7z+n8OnTcHK9X71vvR0rXbKnzlPZIKb+uQ8/0JXussT9cqsfQuUpM+W7nfmPN6RFhv75Ei6HzlKjRY2qTCD16c1vMsXSPyzl3/2Zsvea2qLEHad2iN+U5XLInvNWj5jyLWj2m0GNai8vUoMd9avfobbHDVH2HfWrzv6IG4/ZXU5u1z9vfmJr0yNMjjlstajfRY5gesegRix6xtO5hr5G3Rg+G6RGLHrHoEYsesegRix5tfBZOrsdXhdFDjwiOgWeLrPljspYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALBdL2tfAH8+fuYbWk928A==
   </data>
  </layer>
+ <objectgroup name="Objects">
+  <object id="67" name="wallLeft" x="0" y="79.6364">
+   <polyline points="0,0 0,-63.7273"/>
+  </object>
+  <object id="68" name="wallRight" x="1599.82" y="16.2727">
+   <polyline points="0,0 0.0909091,95.6364"/>
+  </object>
+ </objectgroup>
 </map>

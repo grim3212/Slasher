@@ -1,63 +1,34 @@
 package com.grim3212.slasher.entity;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public abstract class Entity {
+public abstract class Entity extends Actor {
 
-	private Vector2 position;
-	private Vector2 velocity;
-	private boolean inAir = false;
-	private boolean walking = false;
-	private boolean facingRight = false;
-	private String entityID = "";
+	public Body body;
+	public boolean onGround = true;
+	public boolean walking = false;
+	public boolean facingRight = false;
+	public String entityID = "";
 
 	public Entity(String id) {
-		position = new Vector2();
-		velocity = new Vector2();
 		entityID = id;
-	}
 
-	public String getEntityID() {
-		return entityID;
-	}
-
-	public void setPosition(Vector2 position) {
-		this.position = position;
+		body = createBody();
 	}
 
 	public Vector2 getPosition() {
-		return position;
-	}
-
-	public Vector2 getVelocity() {
-		return velocity;
-	}
-
-	public void setVelocity(Vector2 velocity) {
-		this.velocity = velocity;
-	}
-
-	public boolean isInAir() {
-		return inAir;
-	}
-
-	public void setInAir(boolean inAir) {
-		this.inAir = inAir;
-	}
-
-	public boolean isWalking() {
-		return walking;
+		return body.getPosition();
 	}
 
 	public void setWalking(boolean walking) {
 		this.walking = walking;
 	}
 
-	public boolean isFacingRight() {
-		return facingRight;
-	}
-
 	public void setFacingRight(boolean facingRight) {
 		this.facingRight = facingRight;
 	}
+
+	public abstract Body createBody();
 }

@@ -7,8 +7,8 @@
 	
 	"settings": {
 		"vsync": "true",
-		"width": "800",
-		"height": "600",
+		"width": "600",
+		"height": "480",
 		"fullscreen": "false",
 		"drawFPS": "true"
 	}
