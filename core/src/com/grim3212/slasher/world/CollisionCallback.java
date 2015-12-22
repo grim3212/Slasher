@@ -14,12 +14,12 @@ public class CollisionCallback implements ContactListener {
 		Fixture fA = contact.getFixtureA();
 		Fixture fB = contact.getFixtureB();
 
-		if (fA.getUserData() != null && fA.getUserData().equals("bottom")) {
+		if (fA.getUserData() != null && fA.getUserData().equals("player|foot")) {
 			EntityManager.getPlayer().onGround = true;
 			EntityManager.getPlayer().secondJump = false;
 		}
 
-		if (fB.getUserData() != null && fB.getUserData().equals("bottom")) {
+		if (fB.getUserData() != null && fB.getUserData().equals("player|foot")) {
 			EntityManager.getPlayer().onGround = true;
 			EntityManager.getPlayer().secondJump = false;
 		}
@@ -30,11 +30,11 @@ public class CollisionCallback implements ContactListener {
 		Fixture fA = contact.getFixtureA();
 		Fixture fB = contact.getFixtureB();
 
-		if (fA.getUserData() != null && fA.getUserData().equals("bottom")) {
+		if (fA.getUserData() != null && fA.getUserData().equals("player|foot")) {
 			EntityManager.getPlayer().onGround = false;
 		}
 
-		if (fB.getUserData() != null && fB.getUserData().equals("bottom")) {
+		if (fB.getUserData() != null && fB.getUserData().equals("player|foot")) {
 			EntityManager.getPlayer().onGround = false;
 		}
 	}

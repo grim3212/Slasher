@@ -7,9 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public abstract class Entity extends Actor {
 
 	public Body body;
-	public boolean onGround = true;
 	public boolean walking = false;
-	public boolean facingRight = false;
+	public boolean facingRight = true;
 	public String entityID = "";
 
 	public Entity(String id) {
@@ -20,14 +19,6 @@ public abstract class Entity extends Actor {
 
 	public Vector2 getPosition() {
 		return body.getPosition();
-	}
-
-	public void setWalking(boolean walking) {
-		this.walking = walking;
-	}
-
-	public void setFacingRight(boolean facingRight) {
-		this.facingRight = facingRight;
 	}
 
 	public abstract Body createBody();

@@ -17,9 +17,20 @@ public class GameScreen extends ScreenAdapter {
 	public void render(float delta) {
 		// Clear the screen
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(1, 0, 0, 1);
 
 		// Update the stage
-		stage.draw();
 		stage.act(delta);
+		stage.draw();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		stage.getViewport().update(width, height, true);
+	}
+
+	@Override
+	public void dispose() {
+		stage.dispose();
 	}
 }

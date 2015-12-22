@@ -1,21 +1,29 @@
 package com.grim3212.slasher.entity.player;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.grim3212.slasher.entity.Entity;
+import com.grim3212.slasher.input.KeyManager;
+import com.grim3212.slasher.util.GameUtil;
 import com.grim3212.slasher.world.WorldManager;
 
 public class Player extends Entity {
 
 	public Texture texture;
+	public boolean onGround = true;
 	public boolean secondJump = false;
+	public float MAX_WALK_SPEED = 10f;
+	private Fixture bodyFixture;
+	private Fixture footFixture;
 
 	public Player(String name) {
 		super(name);
@@ -36,7 +44,10 @@ public class Player extends Entity {
 
 		Body body = WorldManager.getWorld().createBody(bodyDef);
 		body.setFixedRotation(true);
-		body.setBullet(true);
+
+		/**
+		 * Unneeded right now || body.setBullet(true);
+		 **/
 
 		// Create a circle shape and set its radius to 6
 		PolygonShape box = new PolygonShape();
@@ -49,12 +60,13 @@ public class Player extends Entity {
 		fixtureDef.friction = 0f;
 
 		// Create our fixture and attach it to the body
-		body.createFixture(fixtureDef);
+		bodyFixture = body.createFixture(fixtureDef);
+		bodyFixture.setUserData("player|body");
 		box.dispose();
 
 		// Create a circle shape and set its radius to 6
 		CircleShape sensor = new CircleShape();
-		sensor.setRadius(0.45F);
+		sensor.setRadius(0.5F);
 		sensor.setPosition(new Vector2(0, -0.95F));
 
 		// Create a fixture definition to apply our shape to
@@ -62,10 +74,56 @@ public class Player extends Entity {
 		sensorFixture.shape = sensor;
 		sensorFixture.isSensor = true;
 		// Create our fixture and attach it to the body
-		Fixture fx = body.createFixture(sensorFixture);
-		fx.setUserData("bottom");
+		footFixture = body.createFixture(sensorFixture);
+		footFixture.setUserData("player|foot");
 		sensor.dispose();
 
 		return body;
+	}
+
+	@Override
+	public void act(float delta) {
+		super.act(delta);
+
+		if (this.onGround) {
+			if (!KeyManager.isMovementKeyPressed()) {
+				bodyFixture.setFriction(100f);
+			}
+
+		} else {
+			bodyFixture.setFriction(0f);
+		}
+	}
+
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		if (facingRight)
+			batch.draw(this.texture, this.getPosition().x - 0.5F, this.getPosition().y - 1F, GameUtil.convertToMapUnits(this.texture.getWidth()), GameUtil.convertToMapUnits(this.texture.getHeight()));
+		else
+			batch.draw(this.texture, this.getPosition().x - 0.5F + GameUtil.convertToMapUnits(this.texture.getWidth()), this.getPosition().y - 1F, -GameUtil.convertToMapUnits(this.texture.getWidth()), GameUtil.convertToMapUnits(this.texture.getHeight()));
+	}
+
+	public void movePlayer(boolean right) {
+		if (right) {
+			facingRight = true;
+			if (body.getLinearVelocity().x < MAX_WALK_SPEED) {
+				body.applyLinearImpulse(1F, 0, getPosition().x, getPosition().y, true);
+			}
+		} else {
+			facingRight = false;
+			if (body.getLinearVelocity().x > -MAX_WALK_SPEED) {
+				body.applyLinearImpulse(-1F, 0, getPosition().x, getPosition().y, true);
+			}
+		}
+	}
+
+	public void jump() {
+		if (onGround) {
+			body.applyLinearImpulse(0, 10f, getPosition().x, getPosition().y, true);
+			secondJump = false;
+		} else if (!onGround && !secondJump) {
+			body.applyLinearImpulse(0, 5.5f, getPosition().x, getPosition().y, true);
+			secondJump = true;
+		}
 	}
 }
