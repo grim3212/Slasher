@@ -1,6 +1,5 @@
 package com.grim3212.slasher.entity.player;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
@@ -85,11 +84,19 @@ public class Player extends Entity {
 	public void act(float delta) {
 		super.act(delta);
 
-		if (this.onGround) {
-			if (!KeyManager.isMovementKeyPressed()) {
-				bodyFixture.setFriction(100f);
-			}
+		if (Math.abs(body.getLinearVelocity().x) > MAX_WALK_SPEED) {
+			body.getLinearVelocity().x = Math.signum(body.getLinearVelocity().x) * MAX_WALK_SPEED;
+			body.setLinearVelocity(body.getLinearVelocity().x, body.getLinearVelocity().y);
+		}
 
+		// calculate stilltime & damp
+		if (!KeyManager.isMovementKeyPressed()) {
+			body.setLinearVelocity(body.getLinearVelocity().x * 0.9f, body.getLinearVelocity().y);
+		}
+
+		// Change friction depending on in air or on ground
+		if (this.onGround) {
+			bodyFixture.setFriction(0.2f);
 		} else {
 			bodyFixture.setFriction(0f);
 		}
