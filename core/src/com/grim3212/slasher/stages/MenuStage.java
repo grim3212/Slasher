@@ -34,9 +34,12 @@ public class MenuStage extends Stage {
 			}
 		});
 
-		TooltipManager.getInstance().initialTime = 0.1f;
+		TooltipManager ttm = TooltipManager.getInstance();
+		ttm.initialTime = 0.1f;
+		ttm.subsequentTime = 0.1f;
+		ttm.hideAll();
 
-		button1.addListener(new TextTooltip("Click to start game", TooltipManager.getInstance(), skin));
+		button1.addListener(new TextTooltip("Click to start game", ttm, skin));
 
 		this.addActor(table);
 	}
