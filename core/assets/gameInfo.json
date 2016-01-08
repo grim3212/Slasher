@@ -10,6 +10,8 @@
 		"width": "600",
 		"height": "480",
 		"fullscreen": "false",
-		"drawFPS": "true"
+		"drawFPS": "true",
+		"debug": "true",
+		"skip": "true"
 	}
 }

@@ -17,6 +17,8 @@ public class GameInfo {
 	public static boolean vsync = false;
 	public static boolean fullscreen = false;
 	public static boolean drawFPS = false;
+	public static boolean debug = false;
+	public static boolean skip = false;
 
 	public static void loadGameInfo() {
 		JsonValue root = new JsonReader().parse(Gdx.files.internal("gameInfo.json"));
@@ -30,6 +32,8 @@ public class GameInfo {
 
 		vsync = root.get("settings").getBoolean("vsync");
 		drawFPS = root.get("settings").getBoolean("drawFPS");
+		debug = root.get("settings").getBoolean("debug");
+		skip = root.get("settings").getBoolean("skip");
 
 		title = name + " V" + version + " | By: " + author;
 	}

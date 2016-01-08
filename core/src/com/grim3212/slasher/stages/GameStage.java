@@ -18,7 +18,6 @@ public class GameStage extends Stage {
 	private final float TIME_STEP = 1 / 60f;
 
 	public GameStage() {
-		GameInfo.loadGameInfo();
 		Gdx.graphics.setTitle(GameInfo.title);
 		WorldManager.initWorld();
 
@@ -39,10 +38,18 @@ public class GameStage extends Stage {
 	public void draw() {
 		super.draw();
 
-		fontBatch.begin();
-		font.setColor(Color.BLACK);
-		if (GameInfo.drawFPS)
-			font.draw(fontBatch, "FPS: " + String.valueOf(Gdx.graphics.getFramesPerSecond()) + "\nX: " + EntityManager.getPlayer().getPosition().x + "\nY: " + EntityManager.getPlayer().getPosition().y + "\nOnGround: " + EntityManager.getPlayer().onGround + "\nVelocity X: " + EntityManager.getPlayer().body.getLinearVelocity().x + "\nVelocity Y: " + EntityManager.getPlayer().body.getLinearVelocity().y, 5, Gdx.graphics.getHeight());
-		fontBatch.end();
+		if (GameInfo.debug) {
+			fontBatch.begin();
+			font.setColor(Color.BLACK);
+			if (GameInfo.drawFPS)
+				font.draw(fontBatch, 
+						"FPS: " + String.valueOf(Gdx.graphics.getFramesPerSecond()) + 
+						"\nX: " + EntityManager.getPlayer().getPosition().x + 
+						"\nY: " + EntityManager.getPlayer().getPosition().y + 
+						"\nOnGround: " + EntityManager.getPlayer().onGround + 
+						"\nVelocity X: " + EntityManager.getPlayer().body.getLinearVelocity().x + 
+						"\nVelocity Y: " + EntityManager.getPlayer().body.getLinearVelocity().y, 5, Gdx.graphics.getHeight());
+			fontBatch.end();
+		}
 	}
 }
